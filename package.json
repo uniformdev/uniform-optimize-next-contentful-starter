@@ -12,8 +12,9 @@
     "generate": "run-p copy:slug generate:intents",
     "generate:intents": "uniform optimize manifest download --output ./lib/intentManifest.json --apiKey $UNIFORM_API_KEY",
     "start": "next start -p 4120",
-    "ci:build": "run-s build export",
-    "copy:slug": "node ./scripts/copySlugPage.js"
+    "ci:build": "next build && next export",
+    "copy:slug": "node ./scripts/copySlugPage.js",
+    "postinstall": "run-p copy:slug generate:intents"
   },
   "dependencies": {
     "@analytics/google-analytics": "^0.5.3",
